@@ -1,0 +1,23 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo-img {
+    height: 50px;
+    width: auto;
+}
+
+.nav-links {
+    display: flex;
+    column-gap: 2rem;
+    > * {
+        text-decoration: none;
+        color: var(--color2);
+    }
+
+    > *:hover {
+        color: var(--color3);
+    }
+}

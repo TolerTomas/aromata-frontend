@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+:root {
+    --bg-color: #EEE5CF;
+    --color1: #4A7856;
+    --color2: #345830;
+    --color3: #1E3F20;
+    --color4: #1A1F16;
+    --defaut: #d4d4d4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+::-webkit-scrollbar { display: none; }
+
+body {
+    background-color: var(--bg-color);
+    height: 100vh;
+}
+
+main { height: 100%; }
+
+.container { padding: 20px 10%; }
+

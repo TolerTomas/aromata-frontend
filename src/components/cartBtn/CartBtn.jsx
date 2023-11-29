@@ -1,11 +1,22 @@
 import { LocalStorageAPI } from "../../utils/LSapi";
 import "./cartBtn.css";
 import { useState } from "react";
-import { obtenerTotal } from "../../utils/ObtenerTotal";
+import axios from "axios";
 
 export default function CartBtn() {
 	const LSapi = new LocalStorageAPI();
 	const [visibilityMenu, setVisibilityMenu] = useState(false);
+
+	async function realizarCompra() {
+		const carrito = await LSapi.getTotal()
+		console.log('carrito', carrito);
+		
+		const res = await axios.post('http://127.0.0.1:5000/realizarCompra', carrito);
+
+		if (res.data == 'No se enviaron productos') alert('Hubo un error, no se enviaron productos')
+		if (res.data == 'Carrito creado y guardado') alert('Carrito creado y guardado en la BdD')
+
+	}
 
 	return (
 		<>
@@ -40,7 +51,7 @@ export default function CartBtn() {
 						setVisibilityMenu(false)
 					}}>Vaciar</button>
 
-					<button className="aside-btn" onClick={() => obtenerTotal()}>
+					<button className="aside-btn" onClick={() => realizarCompra()}>
 						Comprar
 					</button>
 

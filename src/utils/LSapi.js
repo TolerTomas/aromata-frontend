@@ -1,3 +1,5 @@
+import axios from "axios";
+
 // Local Storage API for storing products
 let instance;
 
@@ -63,7 +65,7 @@ export class LocalStorageAPI {
         return products;
     }
 
-    getTotal() {
+    async getTotal() {
         let productosCarrito = []
         let totalCarrito = 0
         
@@ -71,8 +73,28 @@ export class LocalStorageAPI {
 
         let ids = Object.keys(ps);
         let cantidades = Object.values(ps);
+        let pPrecio;
         
-        
+        for (let i = 0; i < ids.length; i++) {
+
+            pPrecio = await axios.get(`http://127.0.0.1:5000/productPriceById/${ids[i]}`)
+
+            productosCarrito.push({
+                id: ids[i],
+                cantidades: +cantidades[i],
+                precio: parseInt(pPrecio.data) * parseInt(cantidades[i])
+            });
+
+            totalCarrito += parseInt(pPrecio.data) * parseInt(cantidades[i])
+        }
+
+        console.log(productosCarrito);
+        console.log(totalCarrito);
+
+        return {
+            productosCarrito,
+            totalCarrito
+        }
 
     }
 

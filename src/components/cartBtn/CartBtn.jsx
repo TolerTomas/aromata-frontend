@@ -1,5 +1,5 @@
 import { LocalStorageAPI } from "../../utils/LSapi";
-import "./cartBtn.css";
+import "./CartBtn.css";
 import { useState } from "react";
 import axios from "axios";
 
